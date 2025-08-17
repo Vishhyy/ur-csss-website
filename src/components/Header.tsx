@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import MenuIcon from './MenuIcon';
 import XIcon from './XIcon';
 import newLogo from '../assets/csss-logo.png';
 
 const CsssLogo: React.FC = () => (
   <div className="flex items-center space-x-3">
-    <img
-      src={newLogo}
-      alt="CSSS Logo"
-      className="h-10 w-10 flex-shrink-0"
-    />
+    <img src={newLogo} alt="CSSS Logo" className="h-10 w-10 flex-shrink-0" />
     <div className="text-sm font-bold leading-tight text-[#00643f]">
       <p>University of Regina</p>
       <p>Computer Science Students' Society</p>
@@ -17,25 +14,15 @@ const CsssLogo: React.FC = () => (
   </div>
 );
 
-
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Updated navigation links to include the new page
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Events', href: '#events' },
-    { name: 'URHacks', href: '#urhacks' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'Past Teams', href: '/past-teams' },
+    { name: 'URHacks', href: '/urhacks' },
   ];
-
-  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-    setIsMenuOpen(false);
-  };
 
   const handleLinkClick = () => {
     setIsMenuOpen(false);
@@ -56,27 +43,26 @@ const Header: React.FC = () => {
     <header className="bg-white border-b-4 border-[#00643f] sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-24">
-          <a href="#" aria-label="Home" onClick={handleLogoClick}>
+          <Link to="/" aria-label="Home" onClick={() => setIsMenuOpen(false)}>
             <CsssLogo />
-          </a>
+          </Link>
 
           <nav className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 className="font-semibold text-[#00643f] hover:text-[#fdb927] transition-colors tracking-wider"
               >
                 {link.name.toUpperCase()}
-              </a>
+              </Link>
             ))}
           </nav>
-          <a href="#contact" className="hidden lg:block px-8 py-3 bg-[#fdb927] text-[#00643f] font-bold text-lg hover:bg-yellow-500 transition-colors">
-            GET INVOLVED
-          </a>
 
-          {/* --- CHANGE IS HERE --- */}
-          {/* Added 'relative' and 'z-50' to ensure this button stays on top of the overlay */}
+          <Link to="/#contact" onClick={handleLinkClick} className="hidden lg:block px-8 py-3 bg-[#fdb927] text-[#00643f] font-bold text-lg hover:bg-yellow-500 transition-colors">
+            GET INVOLVED
+          </Link>
+
           <div className="lg:hidden relative z-50">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -94,22 +80,19 @@ const Header: React.FC = () => {
         <div className="flex flex-col items-center justify-center h-full pt-24 -mt-24">
           <nav className="flex flex-col items-center space-y-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 onClick={handleLinkClick}
                 className="text-3xl font-bold text-[#00643f] hover:text-[#fdb927] transition-colors tracking-wider"
               >
                 {link.name.toUpperCase()}
-              </a>
+              </Link>
             ))}
           </nav>
-          <a
-            href="#contact"
-            onClick={handleLinkClick}
-            className="mt-12 px-10 py-4 bg-[#fdb927] text-[#00643f] font-bold text-xl hover:bg-yellow-500 transition-colors">
+          <Link to="/#contact" onClick={handleLinkClick} className="mt-12 px-10 py-4 bg-[#fdb927] text-[#00643f] font-bold text-xl hover:bg-yellow-500 transition-colors">
             GET INVOLVED
-          </a>
+          </Link>
         </div>
       </div>
     </header>

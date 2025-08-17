@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- === THIS IS THE UPDATED LINE === -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
     <title>U of R Computer Science Students' Society</title>
 
     <!-- Google Fonts -->
@@ -24,13 +27,7 @@
       }
     </script>
     
-    <!-- === ADD THIS STYLE BLOCK === -->
     <style>
-      /* 
-        This rule targets any element with an 'id' attribute that can be linked to.
-        It adds a 100px margin above the element ONLY when it's being scrolled to.
-        This leaves the perfect amount of space for your sticky header (which is 96px tall).
-      */
       [id] {
         scroll-margin-top: 100px;
       }
