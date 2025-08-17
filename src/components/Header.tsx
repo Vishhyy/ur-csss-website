@@ -1,24 +1,26 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import MenuIcon from './MenuIcon';
+import XIcon from './XIcon';
+import newLogo from '../assets/csss-logo.png';
 
 const CsssLogo: React.FC = () => (
-    <div className="flex items-center space-x-3">
-        <svg width="40" height="40" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-            <path d="M28 0L0 16V40L28 56L35 51L14 39V17L35 5L28 0Z" fill="#00643f"/>
-            <path d="M28 0L56 16V40L28 56L21 51L42 39V17L21 5L28 0Z" fill="#fdb927"/>
-            <path d="M28 0L21 5L42 17V39L21 51L28 56L56 40V16L28 0Z" fill="#fdb927"/>
-            <path d="M28 56L21 51L28 46L35 51L28 56Z" fill="#CBD5E0"/>
-            <path d="M28 0L21 5L28 10L35 5L28 0Z" fill="#CBD5E0"/>
-        </svg>
-        <div className="hidden sm:block text-sm font-bold leading-tight text-[#00643f]">
-            <p>University of Regina</p>
-            <p>Computer Science Students' Society</p>
-        </div>
+  <div className="flex items-center space-x-3">
+    <img
+      src={newLogo}
+      alt="CSSS Logo"
+      className="h-10 w-10 flex-shrink-0"
+    />
+    <div className="text-sm font-bold leading-tight text-[#00643f]">
+      <p>University of Regina</p>
+      <p>Computer Science Students' Society</p>
     </div>
+  </div>
 );
 
 
 const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const navLinks = [
     { name: 'About', href: '#about' },
     { name: 'Events', href: '#events' },
@@ -32,7 +34,23 @@ const Header: React.FC = () => {
       top: 0,
       behavior: 'smooth'
     });
+    setIsMenuOpen(false);
   };
+
+  const handleLinkClick = () => {
+    setIsMenuOpen(false);
+  };
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen]);
 
   return (
     <header className="bg-white border-b-4 border-[#00643f] sticky top-0 z-50">
@@ -41,6 +59,7 @@ const Header: React.FC = () => {
           <a href="#" aria-label="Home" onClick={handleLogoClick}>
             <CsssLogo />
           </a>
+
           <nav className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => (
               <a
@@ -53,6 +72,42 @@ const Header: React.FC = () => {
             ))}
           </nav>
           <a href="#contact" className="hidden lg:block px-8 py-3 bg-[#fdb927] text-[#00643f] font-bold text-lg hover:bg-yellow-500 transition-colors">
+            GET INVOLVED
+          </a>
+
+          {/* --- CHANGE IS HERE --- */}
+          {/* Added 'relative' and 'z-50' to ensure this button stays on top of the overlay */}
+          <div className="lg:hidden relative z-50">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+              className="p-2 text-[#00643f] hover:text-[#fdb927] transition-colors"
+            >
+              {isMenuOpen ? <XIcon className="h-8 w-8" /> : <MenuIcon className="h-8 w-8" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`lg:hidden fixed inset-0 z-40 bg-white/95 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <div className="flex flex-col items-center justify-center h-full pt-24 -mt-24">
+          <nav className="flex flex-col items-center space-y-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={handleLinkClick}
+                className="text-3xl font-bold text-[#00643f] hover:text-[#fdb927] transition-colors tracking-wider"
+              >
+                {link.name.toUpperCase()}
+              </a>
+            ))}
+          </nav>
+          <a
+            href="#contact"
+            onClick={handleLinkClick}
+            className="mt-12 px-10 py-4 bg-[#fdb927] text-[#00643f] font-bold text-xl hover:bg-yellow-500 transition-colors">
             GET INVOLVED
           </a>
         </div>

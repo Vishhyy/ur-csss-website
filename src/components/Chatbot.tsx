@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI, Chat } from '@google/genai';
 import ChatIcon from './ChatIcon';
+// 1. Import the new logo image
+import newLogo from '../assets/csss-logo.png';
 
 interface Message {
   role: 'user' | 'model';
@@ -55,7 +57,7 @@ const Chatbot: React.FC = () => {
       const result = await chatRef.current.sendMessageStream({ message: input });
       let modelResponse = "";
       for await (const chunk of result) {
-          modelResponse += chunk.text;
+        modelResponse += chunk.text;
       }
       const botMessage: Message = { role: 'model', text: modelResponse };
       setMessages(prev => [...prev, botMessage]);
@@ -68,15 +70,14 @@ const Chatbot: React.FC = () => {
       setIsLoading(false);
     }
   };
-  
+
   const CsssLogoSmall: React.FC = () => (
-    <svg width="24" height="24" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-        <path d="M28 0L0 16V40L28 56L35 51L14 39V17L35 5L28 0Z" fill="#00643f"/>
-        <path d="M28 0L56 16V40L28 56L21 51L42 39V17L21 5L28 0Z" fill="#4A5568"/>
-        <path d="M28 0L21 5L42 17V39L21 51L28 56L56 40V16L28 0Z" fill="#fdb927"/>
-        <path d="M28 56L21 51L28 46L35 51L28 56Z" fill="#CBD5E0"/>
-        <path d="M28 0L21 5L28 10L35 5L28 0Z" fill="#CBD5E0"/>
-    </svg>
+    // 2. Replace the <svg> with an <img> tag
+    <img
+      src={newLogo}
+      alt="CSSS Logo"
+      className="h-6 w-6 flex-shrink-0"
+    />
   );
 
   return (
@@ -92,9 +93,8 @@ const Chatbot: React.FC = () => {
       </div>
 
       <div
-        className={`fixed bottom-0 right-0 mb-24 mr-4 sm:mr-6 lg:mr-8 w-[calc(100%-2rem)] max-w-md h-[70%] max-h-[600px] bg-white rounded-lg shadow-2xl flex flex-col transition-all duration-500 ease-in-out transform ${
-          isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
-        }`}
+        className={`fixed bottom-0 right-0 mb-24 mr-4 sm:mr-6 lg:mr-8 w-[calc(100%-2rem)] max-w-md h-[70%] max-h-[600px] bg-white rounded-lg shadow-2xl flex flex-col transition-all duration-500 ease-in-out transform ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+          }`}
         role="dialog"
         aria-labelledby="chat-heading"
       >
@@ -106,11 +106,10 @@ const Chatbot: React.FC = () => {
         <div className="flex-1 p-4 overflow-y-auto bg-gray-50">
           {messages.map((msg, index) => (
             <div key={index} className={`flex items-end gap-3 my-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-               {msg.role === 'model' && <CsssLogoSmall />}
+              {msg.role === 'model' && <CsssLogoSmall />}
               <div
-                className={`max-w-xs md:max-w-md lg:max-w-sm rounded-2xl px-4 py-2 text-sm ${
-                  msg.role === 'user' ? 'bg-[#fdb927] text-[#00643f] rounded-br-none' : 'bg-gray-200 text-gray-800 rounded-bl-none'
-                }`}
+                className={`max-w-xs md:max-w-md lg:max-w-sm rounded-2xl px-4 py-2 text-sm ${msg.role === 'user' ? 'bg-[#fdb927] text-[#00643f] rounded-br-none' : 'bg-gray-200 text-gray-800 rounded-bl-none'
+                  }`}
               >
                 <p className="whitespace-pre-wrap">{msg.text}</p>
               </div>
@@ -118,12 +117,12 @@ const Chatbot: React.FC = () => {
           ))}
           {isLoading && (
             <div className="flex items-end gap-3 my-3 justify-start">
-               <CsssLogoSmall />
-               <div className="bg-gray-200 text-gray-800 rounded-2xl px-4 py-3 rounded-bl-none flex items-center space-x-1">
-                 <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-                 <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
-                 <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce"></span>
-               </div>
+              <CsssLogoSmall />
+              <div className="bg-gray-200 text-gray-800 rounded-2xl px-4 py-3 rounded-bl-none flex items-center space-x-1">
+                <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce"></span>
+              </div>
             </div>
           )}
           <div ref={messagesEndRef} />
