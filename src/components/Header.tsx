@@ -16,8 +16,24 @@ const CsssLogo: React.FC = () => (
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // 1. State to track scroll position
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // Updated navigation links to include the new page
+  // 2. Effect to listen for scroll events
+  useEffect(() => {
+    const handleScroll = () => {
+      // Set state to true if user has scrolled more than 10px, else false
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup function to remove the event listener
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Past Teams', href: '/past-teams' },
@@ -40,7 +56,13 @@ const Header: React.FC = () => {
   }, [isMenuOpen]);
 
   return (
-    <header className="bg-white border-b-4 border-[#00643f] sticky top-0 z-50">
+    // 3. Dynamic classes for the header
+    <header className={`
+      sticky top-0 z-50 transition-all duration-300
+      ${isScrolled
+        ? 'bg-white/80 backdrop-blur-sm shadow-md'
+        : 'bg-white border-b-4 border-[#00643f]'}
+    `}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-24">
           <Link to="/" aria-label="Home" onClick={() => setIsMenuOpen(false)}>

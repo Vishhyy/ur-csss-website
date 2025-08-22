@@ -7,6 +7,7 @@ import EventCard from './components/EventCard';
 import TeamMemberCard from './components/TeamMemberCard';
 import Chatbot from './components/Chatbot';
 import SponsorsShowcase from './components/SponsorsShowcase';
+import SEO from './components/SEO'; // 1. Import SEO
 
 // Re-importing all data needed for the full homepage
 import { events } from './data/eventsData';
@@ -23,6 +24,11 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-slate-50 text-gray-800">
+      <SEO
+        title="Home"
+        description="The official website for the Computer Science Students' Society at the University of Regina. Find information about events, resources, the executive team, and our annual URHacks hackathon."
+      />
+
       <Header />
       <main>
         <Hero />

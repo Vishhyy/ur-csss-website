@@ -3,10 +3,16 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SectionTitle from '../components/SectionTitle';
 import { pastTeams } from '../data/pastTeamsData';
+import SEO from '../components/SEO'; // 1. Import SEO
 
 const PastTeamsPage: React.FC = () => {
     return (
         <div className="bg-slate-50 text-gray-800">
+            <SEO
+                title="Past Executives"
+                description="A legacy of leadership. View the dedicated students who have served on the UofR Computer Science Students' Society executive team throughout the years."
+            />
+
             <Header />
             <main className="py-20">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
