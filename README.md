@@ -1,6 +1,6 @@
 # University of Regina Computer Science Students' Society Website
 
-![UR CSSS Website Hero](![alt text](<Screenshot 2025-08-22 at 15.22.34.png>)) 
+![alt text](<Screenshot 2025-08-22 at 15.22.34.png>)
 
 The official website for the University of Regina Computer Science Students' Society (CSSS). Built with a modern, responsive tech stack, this site serves as a central hub for students to find information on events, connect with the executive team, and discover resources.
 
