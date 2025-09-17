@@ -5,8 +5,6 @@ import siddharthImage from '../assets/team/siddharth-modi.png';
 import eriminuoluwaImage from '../assets/team/Eriminuoluwa-Orolugbagbe.png';
 import anasImage from '../assets/team/anas-munshi.png';
 
-// Each team member now has a 'socials' object.
-// You can add more, like { github: '...', twitter: '...' } in the future.
 export const team = [
   { 
     name: 'Shahd Saeed', 
@@ -24,7 +22,7 @@ export const team = [
     name: 'Meet Patel', 
     title: 'VP External', 
     imageUrl: meetImage,
-    socials: { linkedin: 'https://www.linkedin.com/in/meet-patel-8b6ab61a7/ ' } 
+    socials: { linkedin: 'https://www.linkedin.com/in/meet-patel-8b6ab61a7/' } 
   },
   { 
     name: 'Siddharth Modi', 
@@ -32,12 +30,7 @@ export const team = [
     imageUrl: siddharthImage,
     socials: { linkedin: 'https://www.linkedin.com/in/siddharth-modi-095356194/' } 
   },
-  { 
-    name: 'Muhammad Muiz Azeem', 
-    title: 'Facilities Officer', 
-    imageUrl: 'https://via.placeholder.com/192/E2E8F0/4A5568?text=Photo',
-    socials: { linkedin: 'https://www.linkedin.com/in/muhammad-muiz-azeem-0246402ba/' } 
-  },
+  // Muhammad Muiz Azeem has been removed from this list.
   { 
     name: 'Eriminuoluwa Orulugbagbe', 
     title: 'Social Media Manager', 
