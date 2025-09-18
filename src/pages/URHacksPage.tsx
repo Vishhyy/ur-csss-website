@@ -17,8 +17,8 @@ const URHacksPage: React.FC = () => {
     return (
         <div className="bg-slate-50 text-gray-800">
             <SEO
-                title="URHacks 2025"
-                description="URHacks is the premier 24-hour hackathon hosted by the University of Regina CSSS. Join us for a weekend of innovation, collaboration, and creation."
+                title="Past Executives"
+                description="A legacy of leadership. View past executive teams of the University of Regina Computer Science Students' Society (CSSS)."
             />
 
             <Header />

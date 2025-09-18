@@ -26,7 +26,7 @@ const App: React.FC = () => {
     <div className="bg-slate-50 text-gray-800">
       <SEO
         title="Home"
-        description="The official website for the Computer Science Students' Society at the University of Regina. Find information about events, resources, the executive team, and our annual URHacks hackathon."
+        description="The official hub for the University of Regina Computer Science Students' Society (CSSS). Find events, meet the executive team, and connect with sponsors."
       />
 
       <Header />
