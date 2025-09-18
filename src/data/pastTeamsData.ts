@@ -11,6 +11,17 @@ export const pastTeams = [
           { name: 'Anas Munshi', title: 'Events Manager' },
         ],
       },
+      {
+        year: '2024 - 2025',
+        members: [
+          { name: 'Shahd Saeed', title: 'President' },
+          { name: 'Nabeera Siddiqi', title: 'VP' },
+          { name: 'Siddharth Modi', title: 'Financial Officer' },
+          { name: 'Kashish Rathod', title: 'Information Officer' },
+          { name: 'Mohammad Akib Hossain', title: 'Social Media Manager' },
+          { name: 'Jorrell Salazar', title: 'Assistance Officer' },
+        ],
+      },
     {
       // This has been corrected to be a specific year, not the "Current Team"
       year: '2023 - 2024',
