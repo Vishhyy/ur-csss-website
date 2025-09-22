@@ -17,8 +17,8 @@ const URHacksPage: React.FC = () => {
     return (
         <div className="bg-slate-50 text-gray-800">
             <SEO
-                title="Past Executives"
-                description="A legacy of leadership. View past executive teams of the University of Regina Computer Science Students' Society (CSSS)."
+                title="URHacks"
+                description="Join URHacks, the premier hackathon from the UofR CSSS in Regina. A 24-hour event for students to build, innovate, and win prizes."
             />
 
             <Header />

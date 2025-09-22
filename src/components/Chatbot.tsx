@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI, Chat } from '@google/genai';
 import ChatIcon from './ChatIcon';
-import newLogo from '../assets/csss-logo.png'; // Using the correct .png logo
+import newLogo from '../assets/logos/csss-logo.png'; // Using the correct .png logo
 
 interface Message {
   role: 'user' | 'model';

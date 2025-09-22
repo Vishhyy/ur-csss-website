@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "SSH FS - W Titan",
+			"uri": "ssh://titan/home/v/vsc521"
+		}
+	],
+	"settings": {}
+}

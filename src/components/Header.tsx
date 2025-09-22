@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MenuIcon from './MenuIcon';
 import XIcon from './XIcon';
-import newLogo from '../assets/csss-logo.png';
+import newLogo from '../assets/logos/csss-logo.png';
 
 const CsssLogo: React.FC = () => (
   <div className="flex items-center space-x-3">

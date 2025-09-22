@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import urHacksLogo from '../assets/urhacks-2025-logo.png';
+import urHacksLogo from '../assets/logos/urhacks-2025-logo.png';
 
 const URHacksHero: React.FC = () => {
     const [isLoaded, setIsLoaded] = useState(false);
