@@ -7,11 +7,11 @@ import EventCard from './components/EventCard';
 import TeamMemberCard from './components/TeamMemberCard';
 import Chatbot from './components/Chatbot';
 import SponsorsShowcase from './components/SponsorsShowcase';
-import SEO from './components/SEO'; // 1. Import SEO
+import SEO from './components/SEO';
 
-// Re-importing all data needed for the full homepage
-import { events } from './data/eventsData';
+import { sponsors as generalSponsors } from './data/generalSponsorsData';
 import { team } from './data/teamData';
+import { events } from './data/eventsData';
 
 const App: React.FC = () => {
 
@@ -28,12 +28,9 @@ const App: React.FC = () => {
         title="Home"
         description="The official hub for the University of Regina Computer Science Students' Society (CSSS). Find events, meet the executive team, and connect with sponsors."
       />
-
       <Header />
       <main>
         <Hero />
-
-        {/* --- ABOUT SECTION (RESTORED) --- */}
         <section id="about" className="py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <SectionTitle>Growing and Learning Together</SectionTitle>
@@ -42,8 +39,6 @@ const App: React.FC = () => {
             </p>
           </div>
         </section>
-
-        {/* --- EVENTS SECTION (RESTORED) --- */}
         <section id="events" className="py-20 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <SectionTitle>Campus Events</SectionTitle>
@@ -52,28 +47,24 @@ const App: React.FC = () => {
             </div>
           </div>
         </section>
-
-        {/* --- TEAM SECTION --- */}
         <section id="team" className="py-20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <SectionTitle>Meet Your Executive Team</SectionTitle>
-            <p className="text-lg max-w-4xl mx-auto mb-16">Congratulations to our newly elected 2025-2026 Executive Team! This passionate group of students is dedicated to building a strong and inclusive tech community on campus.</p>
+            <p className="text-lg max-w-4xl mx-auto mb-16 text-center">Congratulations to our newly elected 2025-2026 Executive Team! This passionate group of students is dedicated to building a strong and inclusive tech community on campus.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16 justify-center">
               {team.map(member => <TeamMemberCard key={member.name} {...member} />)}
             </div>
-            <p className="mt-16 text-md text-gray-700 italic">
+            <p className="mt-16 text-md text-gray-700 italic text-center">
               The Assistance and Information Officer position will be voted on in Fall 2025. Stay tuned for details!
             </p>
           </div>
         </section>
-
-        {/* --- SPONSORS SECTION --- */}
         <section id="sponsors" className="py-20 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <SponsorsShowcase />
+            {/* 2. Pass the correct sponsor list and set stripes to false */}
+            <SponsorsShowcase sponsors={generalSponsors} showStripes={false} />
           </div>
         </section>
-
       </main>
       <Footer />
       <Chatbot />
