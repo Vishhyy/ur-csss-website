@@ -5,28 +5,24 @@ import SectionTitle from '../components/SectionTitle';
 import ProjectIdeaGenerator from '../components/ProjectIdeaGenerator';
 import SponsorsShowcase from '../components/SponsorsShowcase';
 import URHacksHero from '../components/URHacksHero';
-import SEO from '../components/SEO';
 import EventSchedule from '../components/EventSchedule';
 import PrizePool from '../components/PrizePool';
+import usePageTitle from '../hooks/usePageTitle';
 
 import { sponsors as urhacksSponsors } from '../data/urhacksSponsorsData';
 import { winners } from '../data/winnersData';
 import { sponsorshipTiers } from '../data/sponsorshipData';
 
 const URHacksPage: React.FC = () => {
+    usePageTitle('URHacks Hackathon');
+
     return (
         <div className="bg-slate-50 text-gray-800">
-            <SEO
-                title="URHacks Hackathon"
-                description="Join URHacks, the premier hackathon from the UofR CSSS in Regina. A 24-hour event for students to build, innovate, and win prizes."
-            />
             <Header />
             <main>
                 <URHacksHero />
-
                 <section id="details" className="py-20 bg-white">
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                        {/* --- THIS TITLE IS NOW CENTERED --- */}
+                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center">
                             <SectionTitle>What is URHacks?</SectionTitle>
                         </div>
@@ -38,22 +34,17 @@ const URHacksPage: React.FC = () => {
                         </div>
                     </div>
                 </section>
-
                 <PrizePool />
-
                 <section className="py-20">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                        {/* --- THIS TITLE IS NOW CENTERED --- */}
                         <div className="text-center">
                             <SectionTitle>Event Schedule</SectionTitle>
                         </div>
                         <EventSchedule />
                     </div>
                 </section>
-
                 <section className="py-20 bg-white">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                        {/* This showcase component already centers its title */}
                         <SponsorsShowcase sponsors={urhacksSponsors} showStripes={true} />
                     </div>
                 </section>

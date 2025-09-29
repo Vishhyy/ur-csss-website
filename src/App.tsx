@@ -7,13 +7,14 @@ import EventCard from './components/EventCard';
 import TeamMemberCard from './components/TeamMemberCard';
 import Chatbot from './components/Chatbot';
 import SponsorsShowcase from './components/SponsorsShowcase';
-import SEO from './components/SEO';
+import usePageTitle from './hooks/usePageTitle';
 
-import { sponsors as generalSponsors } from './data/generalSponsorsData';
-import { team } from './data/teamData';
 import { events } from './data/eventsData';
+import { team } from './data/teamData';
+import { sponsors as generalSponsors } from './data/generalSponsorsData';
 
 const App: React.FC = () => {
+  usePageTitle('Home');
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -24,10 +25,6 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-slate-50 text-gray-800">
-      <SEO
-        title="Home"
-        description="The official hub for the University of Regina Computer Science Students' Society (CSSS). Find events, meet the executive team, and connect with sponsors."
-      />
       <Header />
       <main>
         <Hero />
@@ -61,7 +58,6 @@ const App: React.FC = () => {
         </section>
         <section id="sponsors" className="py-20 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            {/* 2. Pass the correct sponsor list and set stripes to false */}
             <SponsorsShowcase sponsors={generalSponsors} showStripes={false} />
           </div>
         </section>
