@@ -27,7 +27,8 @@ const URHacksHero: React.FC = () => {
                     <img
                         src={urHacksLogo}
                         alt="URHacks 2025 Logo"
-                        className="w-full max-w-lg mx-auto"
+                        // --- FINAL SIZE INCREASE ---
+                        className="w-full max-w-2xl mx-auto" // Increased from max-w-xl to max-w-2xl
                         style={{ filter: 'drop-shadow(0 4px 15px rgba(0,0,0,0.5))' }}
                     />
                 </div>
@@ -43,7 +44,6 @@ const URHacksHero: React.FC = () => {
                 </div>
 
                 <div className={`transition-all duration-700 ease-out delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    {/* --- THIS IS THE UPDATED LINK --- */}
                     <a
                         href="https://buytickets.at/csssuofr/1880991"
                         target="_blank"
