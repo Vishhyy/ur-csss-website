@@ -23,9 +23,6 @@ const URHacksHero: React.FC = () => {
         >
             <div className="container mx-auto px-4 text-center">
 
-                {/* --- The content is now arranged directly on the background --- */}
-
-                {/* 1. Logo Animation */}
                 <div className={`transition-all duration-700 ease-out ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
                     <img
                         src={urHacksLogo}
@@ -35,21 +32,24 @@ const URHacksHero: React.FC = () => {
                     />
                 </div>
 
-                {/* 2. Paragraph Animation */}
                 <div className={`transition-all duration-700 ease-out delay-200 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                     <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mt-6">
                         Join us for 24 hours of innovation, collaboration, and creation. Build a project, win prizes, and connect with industry leaders.
                     </p>
                 </div>
 
-                {/* 3. Decorative Divider Animation */}
                 <div className={`transition-all duration-700 ease-out delay-300 ${isLoaded ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`}>
                     <div className="w-1/2 max-w-md h-0.5 bg-[#fdb927] mx-auto my-8"></div>
                 </div>
 
-                {/* 4. Button Animation */}
                 <div className={`transition-all duration-700 ease-out delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    <a href="#" className="inline-block bg-[#fdb927] text-[#00643f] font-bold py-3 px-10 text-lg hover:bg-yellow-500 transition-colors transform hover:scale-105 shadow-lg">
+                    {/* --- THIS IS THE UPDATED LINK --- */}
+                    <a
+                        href="https://buytickets.at/csssuofr/1880991"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block bg-[#fdb927] text-[#00643f] font-bold py-3 px-10 text-lg hover:bg-yellow-500 transition-colors transform hover:scale-105 shadow-lg"
+                    >
                         Buy Tickets Now
                     </a>
                 </div>
