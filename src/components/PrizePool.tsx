@@ -41,7 +41,6 @@ const PrizePool: React.FC = () => {
     return (
         <section className="py-20 bg-slate-100">
             <div className="container mx-auto px-4">
-                {/* --- THIS IS THE FIX --- */}
                 <div className="text-center">
                     <SectionTitle>Prize Pool</SectionTitle>
                 </div>
@@ -49,7 +48,8 @@ const PrizePool: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch mt-12">
                     <PrizeCard amount="$500" title="Runner-up" tier="silver" />
                     <PrizeCard amount="$1,000" title="Winner" tier="gold" />
-                    <PrizeCard amount="$200" title="People's Choice" tier="bronze" />
+                    {/* This title has been updated */}
+                    <PrizeCard amount="$200" title="Best Business Solution" tier="bronze" />
                 </div>
             </div>
         </section>

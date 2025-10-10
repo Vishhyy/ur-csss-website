@@ -6,7 +6,6 @@ export const pastTeams = [
           { name: 'Vishwkumar Sheta', title: 'VP Internal' },
           { name: 'Meet Patel', title: 'VP External' },
           { name: 'Siddharth Modi', title: 'Financial Officer' },
-          { name: 'Muhammad Muiz Azeem', title: 'Facilities Officer' },
           { name: 'Eriminuoluwa Orulugbagbe', title: 'Social Media Manager' },
           { name: 'Anas Munshi', title: 'Events Manager' },
         ],

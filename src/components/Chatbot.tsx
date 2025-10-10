@@ -28,7 +28,6 @@ This is our premier 24-hour hackathon where students team up to build applicatio
 - **VP Internal:** Vishwkumar Sheta
 - **VP External:** Meet Patel
 - **Financial Officer:** Siddharth Modi
-- **Facilities Officer:** Muhammad Muiz Azeem
 - **Social Media Manager:** Eriminuoluwa Orulugbagbe
 - **Events Manager:** Anas Munshi
 
