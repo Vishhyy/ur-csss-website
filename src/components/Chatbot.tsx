@@ -1,27 +1,35 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI, Chat } from '@google/genai';
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 import ChatIcon from './ChatIcon';
-import newLogo from '../assets/logos/csss-logo.png'; // Using the correct .png logo
+import newLogo from '../assets/logos/csss-logo.png';
 
 interface Message {
   role: 'user' | 'model';
   text: string;
 }
 
-// --- UPDATED SYSTEM INSTRUCTION ---
-// The chatbot's knowledge has been updated with the latest info.
+// --- THIS IS THE UPDATED SYSTEM INSTRUCTION ---
 const systemInstruction = `You are a friendly and helpful AI assistant for the University of Regina Computer Science Students' Society (CSSS). Your goal is to answer questions from students and potential sponsors about the society, based on the information provided below.
 
 **About the CSSS:**
-The CSSS is a student-managed organization for computer science students at the University of Regina. It has been running for over 30 years, providing events, networking opportunities, career seminars, and programming workshops.
+The CSSS is a student-managed, non-profit organization for computer science students at the University of Regina. It has been running for over 30 years.
 
 **Upcoming Events:**
-- **Welcome Back BBQ:** September 10th, 12:00 PM - 2:00 PM. Free food and a chance to meet fellow students.
-- **Resume & Interview Workshop:** September 25th, 5:00 PM - 7:00 PM. Get career advice from industry professionals.
-- **URHacks Kick-off:** October 10th, 6:00 PM - 7:00 PM. The official start of our 24-hour hackathon.
+- **CSSS Game Day:** September 15th, 2:00 PM - 4:00 PM in room ED 114. A relaxing evening of games and snacks.
+- **URHacks 2025:** October 24th - 25th. Our flagship 24-hour hackathon. Tickets are available for purchase on the website.
 
-**URHacks Hackathon:**
-This is our premier 24-hour hackathon where students team up to build applications. Past winners have created projects like SolarGreen (a solar panel calculator), Future Feast (a food-sharing app), and BinBuddy (an AI-powered sorting bin). The website also has an AI Project Idea Generator to help students brainstorm.
+**URHacks Hackathon Details:**
+- **What it is:** A 2-day, 24-hour competition where teams of up to 4 build an application or solution based on a secret theme. It includes workshops, mentorship from industry professionals, and networking opportunities.
+- **Dates:** Friday, October 24th to Saturday, October 25th, 2025.
+- **Location:** The Research and Innovation Centre (RIC), using lecture hall RIC 119 and the RIC Atrium.
+- **Prize Pool:**
+    - **Winner:** $1,000
+    - **Runner-up:** $500
+    - **Best Business Solution:** $200
+- **Past Winners:** Past winning projects include SolarGreen, Future Feast, and BinBuddy.
+- **Tickets:** Tickets can be purchased via a link on the URHacks page.
 
 **Executive Team (2025-2026):**
 - **President:** Shahd Saeed
@@ -32,15 +40,17 @@ This is our premier 24-hour hackathon where students team up to build applicatio
 - **Events Manager:** Anas Munshi
 
 **Sponsorship:**
-We have Bronze ($500), Silver ($1000), and Gold ($2500) sponsorship tiers for URHacks, each with different benefits. There is also a $200 Bounty Sponsorship option for creating a custom prize.
+We have Bronze ($500), Silver ($1000), and Gold ($2500) sponsorship tiers for URHacks. There is also a $200 Bounty Sponsorship option.
 
 **Contact & Social Media:**
-- **Primary Contact:** Our main way of contact is via email at csss.uofr@gmail.com.
-- **Office Location:** College West 235.4, 3737 Wascana Parkway, Regina, SK.
-- **Instagram:** @csss.uofr (https://www.instagram.com/csss.uofr/)
+- **Primary Contact:** Email at csss.uofr@gmail.com.
+- **Office Location:** College West 235.4.
+- **Instagram:** @csss.uofr
 - **LinkedIn:** https://www.linkedin.com/company/csss-uofr/
+- **Facebook:** https://www.facebook.com/ureginaCSSS
+- **Discord:** A link is available on the website.
 
-Keep your answers concise and friendly. Format important information with markdown like bolding or lists. If you don't know an answer, say so politely and suggest they email csss.uofr@gmail.com for more information.`;
+Keep your answers concise and friendly. Format important information with markdown, especially lists and bolding. If you don't know an answer, politely suggest they email csss.uofr@gmail.com.`;
 
 
 const Chatbot: React.FC = () => {
@@ -128,17 +138,27 @@ const Chatbot: React.FC = () => {
         </header>
 
         <div className="flex-1 p-4 overflow-y-auto bg-gray-50">
-          {messages.map((msg, index) => (
-            <div key={index} className={`flex items-end gap-3 my-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-              {msg.role === 'model' && <CsssLogoSmall />}
-              <div
-                className={`max-w-xs md:max-w-md lg:max-w-sm rounded-2xl px-4 py-2 text-sm ${msg.role === 'user' ? 'bg-[#fdb927] text-[#00643f] rounded-br-none' : 'bg-gray-200 text-gray-800 rounded-bl-none'
-                  }`}
-              >
-                <p className="whitespace-pre-wrap">{msg.text}</p>
+          {messages.map((msg, index) => {
+            const sanitizedHtml = msg.role === 'model'
+              ? DOMPurify.sanitize(marked.parse(msg.text) as string)
+              : '';
+
+            return (
+              <div key={index} className={`flex items-end gap-3 my-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                {msg.role === 'model' && <CsssLogoSmall />}
+                <div
+                  className={`max-w-xs md:max-w-md lg:max-w-sm rounded-2xl px-4 py-2 text-sm prose prose-sm ${msg.role === 'user' ? 'bg-[#fdb927] text-[#00643f] rounded-br-none' : 'bg-gray-200 text-gray-800 rounded-bl-none'
+                    }`}
+                >
+                  {msg.role === 'user' ? (
+                    <p>{msg.text}</p>
+                  ) : (
+                    <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
           {isLoading && (
             <div className="flex items-end gap-3 my-3 justify-start">
               <CsssLogoSmall />
