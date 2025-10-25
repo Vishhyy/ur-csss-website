@@ -23,7 +23,7 @@ export const schedule = [
       { time: "3:00 PM", description: "Hackathon timer ends! All projects must have been submitted" },
       { time: "3:30 PM", description: "Team Presentations begin" },
       { time: "5:00 PM", description: "Judges deliberate final decisions" },
-      { time: "5:30 PM", description: "Award ceremony (First, Runner up, People's choice, Bounty prizes)" },
+      { time: "5:30 PM", description: "Award ceremony (First, Runner up, Best Business Solution)" },
       { time: "5:45 PM", description: "Closing remarks" },
     ]
   }
